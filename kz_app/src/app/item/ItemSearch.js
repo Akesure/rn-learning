@@ -21,12 +21,13 @@ import {
   W,
   H,
   TitleBarHeight,
-  BackButton,
   borderColor,
   getResponsiveSize,
   lightGrey,
   orange ,
-  blue
+  blue,
+  BackButton, 
+  Title
 } from 'common/index'
 
 import { connect } from 'react-redux'
@@ -166,27 +167,6 @@ class SearchTitleBar extends Component {
     const left = <BackButton />
     return (
       <View>
-        <View style={styles.container}>
-          <View style={styles.leftIcon}>
-            {left}
-          </View>
-
-          <View style={ styles.searchContainer} >
-            <TextInput
-              style={styles.input}
-              selectionColor={blue}
-              underlineColorAndroid="rgba(255,255,255,0)"
-              placeholder="点击此处搜索"
-              focus={onFocus}
-              blue={onBlur}
-            />
-          </View>
-
-          <View style={styles.right}>
-            <Image source={require("./img/search.png")} />
-          </View>
-
-        </View>
 
 
         <RefreshableListView
@@ -245,4 +225,11 @@ const styles = StyleSheet.create({
 })
 
 
-module.exports = connect()(ItemSearch)
+const __module = connect()(ItemSearch)
+
+__module.TitleBar = {
+  LeftButton : <BackButton />,
+  Title : <Title>清单</Title>
+  
+}
+module.exports = __module

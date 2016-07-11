@@ -19,7 +19,9 @@ import {
   W,
   lightGrey,
   grey,
-  PagesConfig
+  PagesConfig,
+  BackButton, 
+  Title
 } from "common/index"
 
 import {connect} from 'react-redux'
@@ -38,11 +40,11 @@ class _ImageUploader extends Component {
     this.props.dispatch( navTo( PagesConfig.TakePicture ) )
   }
   render(){
-    const {label, passProps} = this.props
+    const {label, query} = this.props
 
     let path = null
-    if(passProps && passProps.path) {
-      path = passProps.path
+    if(query && query.path) {
+      path = query.path
     }
     return  (
       <View style={styles.container}>
@@ -94,11 +96,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = state => {
-  return {
-    passProps : state.navigator.current.passProps
-  }
-}
 
-export let ImageUploader = connect(mapStateToProps)(_ImageUploader)
 
+
+export let ImageUploader = connect()(_ImageUploader)

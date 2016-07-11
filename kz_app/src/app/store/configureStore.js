@@ -14,23 +14,24 @@ import track from "./track"
 import {persistStore, autoRehydrate} from 'redux-persist';
 
 // reducers
-import { navigator } from "../reduers/navigator"
+import { navigator } from "react-native-redux-navigator"
 import { tab } from "../reduers/tab"
 import { poper } from '../reduers/poper'
 import { user } from '../reduers/user'
+import {calculate} from 'reactive/lib/plus1/reduer'
 
 var isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 const createStoreWithMiddleware = applyMiddleware(
   thunk, 
   promise,
-  track
+  track,
 )(createStore);
 
 const reducer = combineReducers({
   navigator,
   tab,
-  poper,
-  user
+  user,
+  calculate
 });
 
 let store = null

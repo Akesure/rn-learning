@@ -14,6 +14,8 @@ import {
 import {
   Form,
   BottomButton,
+  BackButton,
+  Title,
   PagesConfig
 } from 'common/index'
 
@@ -50,4 +52,11 @@ class ItemInput extends Component {
   }
 }
 
-module.exports = connect()(ItemInput)
+const __module = connect()(ItemInput)
+
+__module.TitleBar = {
+  LeftButton : <BackButton />,
+  Title : <Title>失物拍照</Title>
+
+}
+module.exports = __module

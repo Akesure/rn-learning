@@ -11,5 +11,5 @@ function warn(error) {
 
 module.exports = store => next => action =>
   typeof action.then === 'function'
-    ? Promise.resolve(action).then(next, warn)
+    ? Promise.resolve(action).then(next, warn) // next(1)
     : next(action)

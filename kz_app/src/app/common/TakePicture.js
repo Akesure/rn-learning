@@ -18,7 +18,10 @@ import {
 import {
   W,
   H,
-  TitleBarHeight
+  TitleBarHeight,
+  BackButton,
+  Title
+  
 } from 'common/index'
 
 import {navBack} from 'actions/index'
@@ -113,4 +116,11 @@ const styles = StyleSheet.create({
 })
 
 
-module.exports = connect()(TakePicture)
+const __module = connect()(TakePicture)
+
+__module.TitleBar = {
+  LeftButton : <BackButton />,
+  Title : <Title>失物拍照</Title>
+
+}
+module.exports = __module

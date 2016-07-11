@@ -6,7 +6,7 @@
 
 //const initialState = 'purchase'
 
-const initialState = 'purchase'
+const initialState = 'home'
 export const tab = (state = initialState, action) => {
   if(action.type === "SWITCH_TAB") {
     return action.tab

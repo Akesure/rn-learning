@@ -5,7 +5,7 @@
 
 
 import { call_service } from "../service/service_caller"
-import {navTo} from "./navigator"
+import {navTo} from "actions/index"
 import {
   PagesConfig
 } from "common/index"

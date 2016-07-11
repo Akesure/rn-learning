@@ -4,6 +4,6 @@
  */
 
 
-export {navConsumeAll, navTo, navBack, setInitial, reset, navBackRefreshPrevious, navReplaceWithAnimation }  from "actions/navigator"
+export { navTo, navBack, navReset, navReload }  from "react-native-redux-navigator"
 export { switchTab } from "actions/tab"
 export {create_service} from "actions/service"

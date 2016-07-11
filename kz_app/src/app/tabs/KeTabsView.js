@@ -9,15 +9,26 @@ import React, {Component} from 'react'
 import {
   View,
   Text,
+  Image,
   StyleSheet,
 } from "react-native"
 
 
 import { connect } from 'react-redux'
 import { switchTab } from "../actions/index"
-import {TabBar} from "common/index"
+import {
+  TabBar,
+  BackButton,
+  Title,
+  LinkButton,
+  PagesConfig
+} from "common/index"
 import {KeHomePage} from "./KeHomePage"
 import {ItemCategorySelection} from "item/ItemCategorySelection"
+
+import ExampleList from "reactive/ExampleList"
+
+import {getStore} from "store/configureStore"
 import ItemSearch from "item/ItemSearch"
 
 const iconUser = {
@@ -76,8 +87,8 @@ class KeTabsView extends Component {
         <TabBar.Item
           key="1"
           title = '首页'
-          selected = {this.props.tab === 'purchase'}
-          onPress={this.onTabSelected.bind(this, 'purchase')}
+          selected = {this.props.tab === 'home'}
+          onPress={this.onTabSelected.bind(this, 'home')}
           icon={iconHome.normal}
           selectedIcon={iconHome.selected}
         >
@@ -87,8 +98,8 @@ class KeTabsView extends Component {
         <TabBar.Item
           key="2"
           title = '失物录入'
-          selected = {this.props.tab === 'bill'}
-          onPress={this.onTabSelected.bind(this, 'bill')}
+          selected = {this.props.tab === 'entry'}
+          onPress={this.onTabSelected.bind(this, 'entry')}
           icon={iconWrite.normal}
           selectedIcon={iconWrite.selected}>
 
@@ -102,7 +113,7 @@ class KeTabsView extends Component {
           icon={iconUser.normal}
           selectedIcon={iconUser.selected}
         >
-          <View />
+          <ExampleList />
         </TabBar.Item>
 
 
@@ -126,4 +137,34 @@ const mapStateToProps = (state) => {
     tab : state.tab
   }
 }
-module.exports = connect(mapStateToProps)(KeTabsView)
+const __module = connect(mapStateToProps)(KeTabsView)
+
+
+Object.defineProperty(__module, 'TitleBar', {get : () => {
+
+  const store = getStore()
+  const state = store.getState()
+
+  const tab = state.tab
+
+  let title = "刻舟求件"
+  switch(tab) {
+    case  'entry' :
+      title = '失物录入'
+      break
+    case 'uc' :
+      title = "帐号管理"
+      break
+  }
+
+  const right = <LinkButton route={PagesConfig.Search} params={{sku_id:"00000044"}} >
+    <Image source={require("../img/list-icon.png")} />
+  </LinkButton>
+  return {
+    LeftButton : null,
+    Title : <Title>{title}</Title>,
+    RightButton :right 
+  }
+}})
+
+module.exports = __module

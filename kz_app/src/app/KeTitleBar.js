@@ -24,7 +24,6 @@ import {
   PagesConfig as Pages,
   Link,
   borderColor,
-  NavButton,
   BackButton
 } from "common/index"
 

@@ -14,7 +14,9 @@ import {
 import {
   PagesConfig,
   Form,
-  BottomButton
+  BottomButton,
+  BackButton,
+  Title
 } from 'common/index'
 
 import meta from "./forms/memo"
@@ -54,4 +56,11 @@ class ItemMemo extends Component {
   }
 }
 
-module.exports = connect()(ItemMemo)
+const __module = connect()(ItemMemo)
+
+__module.TitleBar = {
+  LeftButton : <BackButton />,
+  Title : <Title>资料补充</Title>
+
+}
+module.exports = __module
